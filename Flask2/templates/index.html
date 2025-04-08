@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Переводчик</title>
+</head>
+<body>
+    <h1>Переводчик</h1>
+    <form method="POST">
+        <label for="text">Введите текст:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required>{{ text or '' }}</textarea><br><br>
+
+        <label for="lang">Выберите язык:</label><br>
+        <select id="lang" name="lang">
+            <option value="ru" {% if lang == 'ru' %}selected{% endif %}>Русский</option>
+            <option value="en" {% if lang == 'en' %}selected{% endif %}>Английский</option>
+            <option value="fr" {% if lang == 'fr' %}selected{% endif %}>Французский</option>
+            <option value="es" {% if lang == 'es' %}selected{% endif %}>Испанский</option>
+        </select><br><br>
+
+        <button type="submit">Перевести</button>
+    </form>
+
+    {% if translation %}
+        <h2>Результат перевода:</h2>
+        <p><strong>Оригинал:</strong> {{ text }}</p>
+        <p><strong>Перевод:</strong> {{ translation }}</p>
+    {% endif %}
+
+    <hr>
+    <a href="{{ url_for('history') }}">Посмотреть историю запросов</a>
+</body>
+</html>

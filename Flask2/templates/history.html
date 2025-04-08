@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>История запросов</title>
+</head>
+<body>
+    <h1>История запросов</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Текст</th>
+                <th>Язык</th>
+                <th>Перевод</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in history %}
+                <tr>
+                    <td>{{ entry.text }}</td>
+                    <td>{{ entry.lang }}</td>
+                    <td>{{ entry.translation }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <a href="{{ url_for('index') }}">Вернуться к переводчику</a>
+</body>
+</html>
